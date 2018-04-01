@@ -31,9 +31,9 @@ namespace magic.crc
 #if DEBUG
             args = new string[]
             {
-                @"C:\Temp\magic-crc-1.bin",
+                @"C:\Temp\crc.bin",
                 @"C:\Temp\magic-crc-2.bin",
-                "/O", "128"
+                "/O", "-4"
             };
 #endif
 
