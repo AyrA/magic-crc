@@ -29,9 +29,30 @@ namespace magic.crc
             }
         }
 
+        /// <summary>
+        /// Gets all character classes and characters
+        /// </summary>
+        /// <remarks>This returns a copy rather than a reference</remarks>
+        /// <returns>Dictionary of all character classes with characters</returns>
+        public static Dictionary<UnicodeCategory, char[]> GetAll()
+        {
+            var Ret = new Dictionary<UnicodeCategory, char[]>();
+            foreach (var Cat in Enum.GetValues(typeof(UnicodeCategory)).OfType<UnicodeCategory>())
+            {
+                Ret.Add(Cat, Get(Cat));
+            }
+            return Ret;
+        }
+
+        /// <summary>
+        /// Gets a specific character class
+        /// </summary>
+        /// <param name="Cat">Unicode character class</param>
+        /// <remarks>This returns a copy rather than a reference</remarks>
+        /// <returns>Characters, null if category not found</returns>
         public static char[] Get(UnicodeCategory Cat)
         {
-            if (Enum.IsDefined(Cat.GetType(), Cat))
+            if (Categories.ContainsKey(Cat))
             {
                 return Categories[Cat].ToArray();
             }
